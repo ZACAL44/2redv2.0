@@ -3,298 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Theme</title>
+    <title>Red Theme - Local Version</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(135deg, #000000 0%, #450000 50%, #000000 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            position: relative;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            font-family: Arial; overflow: hidden;
         }
-
         .container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 20px;
+            text-align: center; padding: 20px; position: relative; z-index: 2;
         }
-
         .image-frame {
-            border: 4px solid #ff0000;
-            border-radius: 15px;
-            padding: 15px;
+            border: 4px solid #ff0000; border-radius: 15px; padding: 15px;
             background: linear-gradient(45deg, #2a0000, #5a0000);
-            box-shadow: 
-                0 0 50px rgba(255, 0, 0, 0.3),
-                inset 0 0 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
             margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
         }
-
-        .image-frame::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #ff0000, #8B0000, #ff0000);
-            z-index: -1;
-            border-radius: 20px;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-
         #mainImage {
-            max-width: 90vw;
-            max-height: 70vh;
-            border-radius: 8px;
-            display: block;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            max-width: 90vw; max-height: 70vh; border-radius: 8px;
+            display: block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
         }
-
         .red-platform {
-            width: 120%;
-            height: 150px;
-            background: linear-gradient(90deg, 
-                #000000 0%, 
-                #8B0000 25%, 
-                #ff0000 50%, 
-                #8B0000 75%, 
-                #000000 100%);
-            position: absolute;
-            bottom: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 50% 50% 0 0;
-            filter: blur(15px);
-            opacity: 0.8;
-            z-index: 1;
+            width: 120%; height: 150px;
+            background: linear-gradient(90deg, #000000, #8B0000, #ff0000, #8B0000, #000000);
+            position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%);
+            border-radius: 50% 50% 0 0; filter: blur(15px); opacity: 0.8;
         }
-
-        /* Анимированный фон */
-        .background-effects {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .pulse-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .pulse-circle:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .pulse-circle:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 1s;
-        }
-
-        .pulse-circle:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 2s;
-        }
-
-        .floating-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ff0000;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Анимации */
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 0.3; 
-            }
-            50% { 
-                transform: scale(1.2); 
-                opacity: 0.6; 
-            }
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { 
-                opacity: 0.5; 
-            }
-            50% { 
-                opacity: 0.8; 
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px); 
-            }
-            25% { 
-                transform: translateY(-20px) translateX(10px); 
-            }
-            50% { 
-                transform: translateY(0px) translateX(20px); 
-            }
-            75% { 
-                transform: translateY(20px) translateX(10px); 
-            }
-        }
-
-        /* Скрываем аудио */
-        #backgroundAudio {
-            display: none;
-        }
-
-        /* Индикатор воспроизведения */
-        .audio-indicator {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 10px;
-            height: 10px;
-            background: #00ff00;
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .audio-indicator.active {
-            opacity: 1;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+        audio { display: none; }
+        .status { color: white; margin-top: 20px; font-size: 14px; }
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
-    <div class="background-effects">
-        <div class="pulse-circle"></div>
-        <div class="pulse-circle"></div>
-        <div class="pulse-circle"></div>
-        <div class="floating-particles" id="particlesContainer"></div>
-    </div>
-
-    <!-- Индикатор воспроизведения -->
-    <div class="audio-indicator" id="audioIndicator"></div>
-
-    <!-- Основной контент -->
     <div class="container">
         <div class="image-frame">
-            <img src="https://files.catbox.moe/78uzy3.jpg" alt="Main Visual" id="mainImage">
+            <img src="https://files.catbox.moe/78uzy3.jpg" alt="Main Visual" id="mainImage" onerror="document.getElementById('status').textContent='Ошибка загрузки изображения'">
             <div class="red-platform"></div>
         </div>
+        <div class="status" id="status">Загрузка...</div>
     </div>
 
-    <!-- Аудио элемент -->
-    <audio id="backgroundAudio" loop>
+    <audio id="backgroundAudio" loop oncanplay="document.getElementById('status').textContent='Музыка загружена - кликните для воспроизведения'">
         <source src="https://files.catbox.moe/ukxffp.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Создание частиц
-        function createParticles() {
-            const container = document.getElementById('particlesContainer');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                container.appendChild(particle);
-            }
-        }
-
-        // Воспроизведение аудио
-        function initializeAudio() {
+        document.addEventListener('DOMContentLoaded', function() {
             const audio = document.getElementById('backgroundAudio');
-            const indicator = document.getElementById('audioIndicator');
+            const status = document.getElementById('status');
             
-            // Функция для воспроизведения
             function playAudio() {
                 audio.play().then(() => {
-                    console.log('Музыка воспроизводится');
-                    indicator.classList.add('active');
-                }).catch(error => {
-                    console.log('Автовоспроизведение заблокировано:', error);
-                    indicator.style.background = '#ff0000';
+                    status.textContent = '🎵 Музыка воспроизводится';
+                    status.style.color = '#00ff00';
+                }).catch(e => {
+                    status.textContent = '🔇 Кликните для включения музыки';
+                    status.style.color = '#ff4444';
                 });
             }
             
-            // Пытаемся воспроизвести сразу
-            playAudio();
+            // Пробуем воспроизвести
+            setTimeout(playAudio, 1000);
             
-            // Добавляем обработчики для пользовательского взаимодействия
-            document.body.addEventListener('click', function() {
-                playAudio();
-            });
+            // Клик для воспроизведения
+            document.body.addEventListener('click', playAudio);
             
-            document.body.addEventListener('keydown', function() {
-                playAudio();
+            // Проверка загрузки
+            audio.addEventListener('canplay', () => {
+                status.textContent = '✅ Всё загружено - кликните для музыки';
             });
-            
-            document.body.addEventListener('touchstart', function() {
-                playAudio();
-            });
-        }
-
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            initializeAudio();
         });
-
-        // Обработка ошибок загрузки медиа
-        document.getElementById('mainImage').onerror = function() {
-            console.log('Ошибка загрузки изображения');
-        };
-        
-        document.getElementById('backgroundAudio').onerror = function() {
-            console.log('Ошибка загрузки аудио');
-            document.getElementById('audioIndicator').style.background = '#ff0000';
-        };
     </script>
 </body>
 </html>
